@@ -1,6 +1,8 @@
 from tkinter import *
 import random
 import tkinter.messagebox
+from datetime import datetime
+import time
 
 ## game settings
 game = [1,1,1]
@@ -22,6 +24,9 @@ c = game[1]
 m = game[2]
 
 numpressed = []
+
+begin_time = datetime.now()
+
 
 ## grid stuff
 root = Tk()
@@ -75,7 +80,10 @@ def test_callback(button):
 			for x in range(r):
 				for y in range(c):
 					btn_list[x][y].config(text = ":)", bg = 'blue', relief=RIDGE)
-			tkinter.messagebox.showinfo("You won!", "Congrats :D")
+			now_time = datetime.now()
+			tdelta = now_time - begin_time
+			sec = tdelta.total_seconds()
+			tkinter.messagebox.showinfo("You won!", "Congraduations :D. You won in " + str(sec) + " seconds")
 	
 ##supposed to be used to clear around "0"s, not functioning yet
 def clear_around(button):
