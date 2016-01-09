@@ -38,6 +38,7 @@ grid=Frame(frame)
 grid.grid(sticky=N+S+E+W, column=0, row=7, columnspan=2)
 Grid.rowconfigure(frame, 7, weight=1)
 Grid.columnconfigure(frame, 0, weight=1)
+
 	
 def with_callback(control, fun):
 	def inner():
@@ -83,7 +84,10 @@ def test_callback(button):
 			now_time = datetime.now()
 			tdelta = now_time - begin_time
 			sec = tdelta.total_seconds()
-			tkinter.messagebox.showinfo("You won!", "Congraduations :D. You won in " + str(sec) + " seconds")
+			tkinter.messagebox.showinfo("You won!", "Congraduations :D. You won in " + str(round(sec, 2)) + " seconds")
+			message = str(now_time) + ": " + str(r) + " rows, " + str(c) + " columns, "+ str(m) + " mines. Completed in: " + str(round(sec, 2)) + " seconds\n______________________________________\n"
+			with open("scorelog.txt", "a") as myfile:
+				myfile.write(message)
 	
 ##supposed to be used to clear around "0"s, not functioning yet
 def clear_around(button):
